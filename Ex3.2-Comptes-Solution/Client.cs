@@ -14,16 +14,18 @@ namespace Ex3._2_Comptes_Solution
         public string Nom { get; private set; }
         public string Prenom { get; private set; }
         public string Employeur { get; private set; }
-        public string NAS { get; private set; }
-        private string _nip;
+        public string _nas { get; private set; }
+        public string _nip { get; private set; }
+        public List<Compte> _comptes;
 
         public Client(string nom, string prenom, string employeur, string nas, string nip)
         {
             Nom = nom;
             Prenom = prenom;
             Employeur = employeur;
-            NAS = nas;
+            _nas = nas;
             _nip = nip;
+            _comptes = new List<Compte>();
         }
 
         public void ChangerNIP(string ancienNIP, string nouveauNIP)
@@ -37,6 +39,13 @@ namespace Ex3._2_Comptes_Solution
             {
                 Console.WriteLine("Erreur : l'ancien NIP est incorrect.");
             }
+        }
+
+        public Compte OuvrirCompte()
+        {
+            Compte compte = new Compte(this);
+            _comptes.Add(compte);
+            return compte;
         }
     }
 }

@@ -6,18 +6,19 @@ using System.Threading.Tasks;
 
 namespace Ex3._2_Comptes_Solution
 {
-    public class CompteBancaire
+    public class Compte
     {
-        public int NumeroCompte { get; private set; }
+        public long NumeroCompte { get; private set; }
         public Client Proprietaire { get; private set; }
         public decimal Solde { get; private set; }
         private List<string> _transactions;
+        private static long _compteur = 100000000;
 
-        public CompteBancaire(int numeroCompte, Client proprietaire)
+        public Compte(Client proprietaire)
         {
-            NumeroCompte = numeroCompte;
+            NumeroCompte = ++_compteur;
             Proprietaire = proprietaire;
-            Solde = 0.0m;
+            Solde = (decimal)0.0;
             _transactions = new List<string>();
         }
 
@@ -26,7 +27,7 @@ namespace Ex3._2_Comptes_Solution
             if (montant > 0)
             {
                 Solde += montant;
-                string transaction = $"Dépôt : +{montant:C} dans {NumeroCompte}";
+                string transaction = $"{DateTime.Now} Dépôt : +{montant:C} dans {NumeroCompte}";
                 _transactions.Add(transaction);
                 EnregistrerTransaction(transaction);
                 Console.WriteLine($"Dépôt de {montant:C} réussi. Nouveau solde : {Solde:C}");
@@ -42,7 +43,7 @@ namespace Ex3._2_Comptes_Solution
             if (montant > 0 && montant <= Solde)
             {
                 Solde -= montant;
-                string transaction = $"Retrait : -{montant:C} de {NumeroCompte}";
+                string transaction = $"{DateTime.Now} Retrait : -{montant:C} de {NumeroCompte}";
                 _transactions.Add(transaction);
                 EnregistrerTransaction(transaction);
                 Console.WriteLine($"Retrait de {montant:C} réussi. Nouveau solde : {Solde:C}");

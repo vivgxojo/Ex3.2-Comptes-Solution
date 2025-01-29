@@ -14,9 +14,9 @@ namespace Ex3._2_Comptes_Solution
         public string Nom { get; private set; }
         public string Prenom { get; private set; }
         public string Employeur { get; private set; }
-        public string _nas { get; private set; }
-        public string _nip { get; private set; }
-        public List<Compte> _comptes;
+        private string _nas;
+        private string _nip;
+        private List<Compte> _comptes;
 
         public Client(string nom, string prenom, string employeur, string nas, string nip)
         {
@@ -26,6 +26,11 @@ namespace Ex3._2_Comptes_Solution
             _nas = nas;
             _nip = nip;
             _comptes = new List<Compte>();
+        }
+
+        public bool Authentifier(string nip)
+        {
+            return _nip == nip;
         }
 
         public void ChangerNIP(string ancienNIP, string nouveauNIP)

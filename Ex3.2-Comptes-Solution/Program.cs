@@ -36,6 +36,7 @@ while (true) {
             break;
 
         case "2":
+        default:
             long no;
             do
             {
@@ -45,7 +46,7 @@ while (true) {
                 nip = Console.ReadLine();
                 compte = _comptes.Find(c => c.NumeroCompte == no);
                 client = compte.Proprietaire;
-            } while (client._nip != nip);
+            } while (!client.Authentifier(nip));
             break;
     }
 

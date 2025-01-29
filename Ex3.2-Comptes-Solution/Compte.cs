@@ -10,7 +10,11 @@ namespace Ex3._2_Comptes_Solution
     {
         public long NumeroCompte { get; private set; }
         public Client Proprietaire { get; private set; }
-        public decimal Solde { get; private set; }
+        private decimal _solde;
+        public decimal Solde { 
+            get { return Math.Round(_solde, 2); } 
+            private set { _solde = Math.Round(value, 2); } 
+        }
         private List<string> _transactions;
         private static long _compteur = 100000000;
 
@@ -34,7 +38,7 @@ namespace Ex3._2_Comptes_Solution
             }
             else
             {
-                Console.WriteLine("Montant invalide pour un dépôt.");
+                throw new Exception("Montant invalide pour un dépôt.");
             }
         }
 
@@ -50,7 +54,7 @@ namespace Ex3._2_Comptes_Solution
             }
             else
             {
-                Console.WriteLine("Montant invalide ou fonds insuffisants.");
+                throw new Exception("Montant invalide ou fonds insuffisants.");
             }
         }
 

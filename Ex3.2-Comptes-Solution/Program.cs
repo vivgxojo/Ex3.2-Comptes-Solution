@@ -71,7 +71,12 @@ while (true) {
                 Console.Write("Entrez le montant à déposer : ");
                 if (decimal.TryParse(Console.ReadLine(), out decimal montantDepot))
                 {
-                    compte.Deposer(montantDepot);
+                    try
+                    {
+                        compte.Deposer(montantDepot);
+                    }
+                    catch (Exception ex) { Console.WriteLine(ex.Message); }
+                    
                 }
                 else
                 {
@@ -83,7 +88,11 @@ while (true) {
                 Console.Write("Entrez le montant à retirer : ");
                 if (decimal.TryParse(Console.ReadLine(), out decimal montantRetrait))
                 {
-                    compte.Retirer(montantRetrait);
+                    try
+                    {
+                        compte.Retirer(montantRetrait);
+                    }
+                    catch(Exception ex) { Console.WriteLine(ex.Message); }
                 }
                 else
                 {
